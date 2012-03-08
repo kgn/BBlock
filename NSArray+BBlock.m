@@ -11,6 +11,7 @@
 @implementation NSArray(BBlock)
 
 - (void)enumerateEachObjectUsingBlock:(void(^)(id obj))block{
+    NSParameterAssert(block != nil);
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         block(obj);
     }];
