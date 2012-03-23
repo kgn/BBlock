@@ -26,3 +26,10 @@ Returns an `NSImage` that can be used to cache drawing
 ```
 + (id)scheduledTimerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;
 ```
+###UIImage+BBlock.h
+
+Returns a `UIImage` that can be used to cache drawing
+
+```
++ (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
+```

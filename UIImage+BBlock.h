@@ -10,6 +10,7 @@
 
 @interface UIImage(BBlock)
 
+/// Returns a `UIImage` that can be used to cache drawing
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
 
 @end
