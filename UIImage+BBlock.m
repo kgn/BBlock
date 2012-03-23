@@ -11,15 +11,14 @@
 @implementation UIImage(BBlock)
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
-    UIImage *image = nil;
     if([UIScreen instancesRespondToSelector:@selector(scale)]){
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     }else{
         UIGraphicsBeginImageContext(size);
     }
     drawingBlock();
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     return image;
 }
 
