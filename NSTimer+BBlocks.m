@@ -8,9 +8,13 @@
 
 #import "NSTimer+BBlocks.h"
 
+@interface NSTimer(BBlockPrivate)
++ (void)executeBlock:(NSTimer *)timer;
+@end
+
 @implementation NSTimer(BBlocks)
 
-+ (void)_executeSimpleBlock:(NSTimer *)timer{
++ (void)executeBlock:(NSTimer *)timer{
     if([timer userInfo]){
         void (^block)() = (void (^)())[timer userInfo];
         block();
@@ -25,7 +29,7 @@
     void (^_block)() = [block copy];
     id timer = [self timerWithTimeInterval:timeInterval 
                                     target:self 
-                                  selector:@selector(_executeSimpleBlock:) 
+                                  selector:@selector(executeBlock:) 
                                   userInfo:_block 
                                    repeats:repeats];
 #if !__has_feature(objc_arc)
@@ -42,7 +46,7 @@
     void (^_block)() = [block copy];
     id timer = [self scheduledTimerWithTimeInterval:timeInterval 
                                              target:self 
-                                           selector:@selector(_executeSimpleBlock:) 
+                                           selector:@selector(executeBlock:) 
                                            userInfo:_block 
                                             repeats:repeats];
 #if !__has_feature(objc_arc)
