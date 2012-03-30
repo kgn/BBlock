@@ -10,7 +10,7 @@
 
 @interface NSArray(BBlock)
 
-/// Enumerate each object in the array
+/// Enumerate each object in the array.
 - (void)enumerateEachObjectUsingBlock:(void(^)(id obj))block;
 
 @end

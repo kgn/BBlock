@@ -1,13 +1,13 @@
 ###NSArray+BBlock.h
 
-Enumerate each object in the array
+Enumerate each object in the array.
 
 ```obj-c
 - (void)enumerateEachObjectUsingBlock:(void(^)(id obj))block;
 ```
 ###NSImage+BBlock.h
 
-Returns an `NSImage` that can be used to cache drawing
+Returns an `NSImage` that can be used to cache drawing.
 
 ```obj-c
 + (NSImage *)imageForSize:(NSSize)size withDrawingBlock:(void(^)())drawingBlock;
@@ -33,7 +33,7 @@ Returns a cached `NSImage` that can be used for drawing. The `NSImage` is cached
 ```
 ###UIImage+BBlock.h
 
-Returns a `UIImage` that can be used to cache drawing
+Returns a `UIImage` that can be used to cache drawing.
 
 ```obj-c
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
