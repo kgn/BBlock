@@ -10,7 +10,7 @@
 
 @interface NSImage(BBlock)
 
-/// Returns an `NSImage` that can be used to cache drawing.
+/// Returns an `NSImage` that can be used to cache drawing. This method does not cache the image object.
 + (NSImage *)imageForSize:(NSSize)size withDrawingBlock:(void(^)())drawingBlock;
 
 /// Returns a cached `NSImage` that can be used for drawing. The `NSImage` is cached in an `NSCache` with the name provided.
