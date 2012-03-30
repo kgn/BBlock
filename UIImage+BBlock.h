@@ -13,4 +13,7 @@
 /// Returns a `UIImage` that can be used to cache drawing
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
 
+/// Returns a cached `UIImage` that can be used for drawing. The `UIImage` is cached in an `NSCache` with the name provided.
++ (UIImage *)imageNamed:(NSString *)name forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
+
 @end

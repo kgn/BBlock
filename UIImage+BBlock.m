@@ -8,7 +8,19 @@
 
 #import "UIImage+BBlock.h"
 
+@interface UIImage(BBlockPrivate)
++ (NSCache *)drawingCache;
+@end
+
 @implementation UIImage(BBlock)
+
++ (NSCache *)drawingCache{
+    static NSCache *cache = nil;
+    if(cache == nil){
+        cache = [[NSCache alloc] init];
+    }
+    return cache;
+}
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
     if([UIScreen instancesRespondToSelector:@selector(scale)]){
@@ -19,6 +31,15 @@
     drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)imageNamed:(NSString *)name forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock{
+    UIImage *image = [[[self class] drawingCache] objectForKey:name];
+    if(image == nil){
+        image = [[self class] imageForSize:size withDrawingBlock:drawingBlock];
+        [[[self class] drawingCache] setObject:image forKey:name];
+    }
     return image;
 }
 
