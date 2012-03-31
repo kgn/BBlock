@@ -7,15 +7,15 @@ Enumerate each object in the array.
 ```
 ###NSImage+BBlock.h
 
-Returns an `NSImage` that can be used to cache drawing. This method does not cache the image object.
+Returns a `NSImage` rendered with the drawing code in the block. This method does not cache the image object. 
 
 ```obj-c
 + (NSImage *)imageForSize:(NSSize)size withDrawingBlock:(void(^)())drawingBlock;
 ```
-Returns a cached `NSImage` that can be used for drawing. The `NSImage` is cached in an `NSCache` with the name provided.
+Returns a cached `NSImage` rendered with the drawing code in the block. The `NSImage` is cached in an `NSCache` with the identifier provided. 
 
 ```obj-c
-+ (NSImage *)imageNamed:(NSString *)name forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock;
++ (NSImage *)imageWithIdentifier:(NSString *)identifier forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock;
 ```
 ###NSTimer+BBlocks.h
 
@@ -33,13 +33,13 @@ Returns a cached `NSImage` that can be used for drawing. The `NSImage` is cached
 ```
 ###UIImage+BBlock.h
 
-Returns a `UIImage` that can be used to cache drawing. This method does not cache the image object.
+Returns a `UIImage` rendered with the drawing code in the block. This method does not cache the image object. 
 
 ```obj-c
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
 ```
-Returns a cached `UIImage` that can be used for drawing. The `UIImage` is cached in an `NSCache` with the name provided.
+Returns a cached `UIImage` rendered with the drawing code in the block. The `UIImage` is cached in an `NSCache` with the identifier provided. 
 
 ```obj-c
-+ (UIImage *)imageNamed:(NSString *)name forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
++ (UIImage *)imageWithIdentifier:(NSString *)identifier forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
 ```
