@@ -24,11 +24,8 @@
 }
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
-    if([UIScreen instancesRespondToSelector:@selector(scale)]){
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    }else{
-        UIGraphicsBeginImageContext(size);
-    }
+
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
