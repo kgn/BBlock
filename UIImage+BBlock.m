@@ -16,18 +16,16 @@
 
 + (NSCache *)drawingCache{
     static NSCache *cache = nil;
-    if(cache == nil){
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
         cache = [[NSCache alloc] init];
-    }
+    });
     return cache;
 }
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
-    if([UIScreen instancesRespondToSelector:@selector(scale)]){
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    }else{
-        UIGraphicsBeginImageContext(size);
-    }
+
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
