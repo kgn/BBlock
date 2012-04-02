@@ -16,15 +16,14 @@
 
 + (NSCache *)drawingCache{
     static NSCache *cache = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
         cache = [[NSCache alloc] init];
     });
     return cache;
 }
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
-
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

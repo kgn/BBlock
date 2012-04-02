@@ -16,9 +16,10 @@
 
 + (NSCache *)drawingCache{
     static NSCache *cache = nil;
-    if(cache == nil){
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
         cache = [[NSCache alloc] init];
-    }
+    });
     return cache;
 }
 
