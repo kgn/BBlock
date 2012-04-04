@@ -5,6 +5,24 @@ Enumerate each object in the array.
 ```obj-c
 - (void)enumerateEachObjectUsingBlock:(void(^)(id obj))block;
 ```
+###NSButton+BBlock.h
+
+**WARNING**: This category is still in early development. Currently the order of calling these methods is important:
+
+* `setImage`
+* `setAlternateBackgroundImage`
+* `setBackgroundImage`
+
+Tries to mimic `UIButton` by exposing a method to set the background image. The image set with `setImage` is composited on-top of the background image. 
+
+```obj-c
+- (void)setBackgroundImage:(NSImage *)backgroundImage;
+```
+Tries to mimic `UIButton` by exposing a method to set the alternate background image. The image set with `setAlternateImage` is composited on-top of the alternate background image. If no `alternateImage` is set `image` will be used instead. 
+
+```obj-c
+- (void)setAlternateBackgroundImage:(NSImage *)alternateBackgroundImage;
+```
 ###NSImage+BBlock.h
 
 Returns a `NSImage` rendered with the drawing code in the block. This method does not cache the image object. 
