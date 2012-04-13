@@ -12,9 +12,10 @@
 
 /** **WARNING**: This category is still in early development.
  Currently the order of calling these methods is important:
- # `setImage`
- # `setAlternateBackgroundImage`
- # `setBackgroundImage`
+
+ 1. `setImage`
+ 2. `setAlternateBackgroundImage`
+ 3. `setBackgroundImage`
  */
 
 /** Tries to mimic `UIButton` by exposing a method to set the background image.
