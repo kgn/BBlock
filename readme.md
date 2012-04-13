@@ -1,5 +1,7 @@
 ##BBNSButton.h
 
+###@interface BBNSButton : NSButton
+
 Set the callback block to be called when the mouse **enters** the button.
 
 ```obj-c
@@ -20,6 +22,8 @@ Set both the **enter* and **exit** callback blocks.
 
 ##BBlock.h
 
+###@interface BBlock : NSObject
+
 Execute the block on the main thread
 
 ```obj-c
@@ -28,6 +32,8 @@ Execute the block on the main thread
 
 ##NSArray+BBlock.h
 
+###@interface NSArray(BBlock)
+
 Enumerate each object in the array.
 
 ```obj-c
@@ -35,6 +41,8 @@ Enumerate each object in the array.
 ```
 
 ##NSButton+BBlock.h
+
+###@interface NSButton(BBlock)
 
 **WARNING**: This category is still in early development.
 Currently the order of calling these methods is important:
@@ -60,6 +68,8 @@ If no `alternateImage` is set `image` will be used instead.
 
 ##NSImage+BBlock.h
 
+###@interface NSImage(BBlock)
+
 Returns a `NSImage` rendered with the drawing code in the block.
 This method does not cache the image object. 
 
@@ -75,6 +85,8 @@ The `NSImage` is cached in an `NSCache` with the identifier provided.
 ```
 
 ##NSTimer+BBlocks.h
+
+###@interface NSTimer(BBlocks)
 
 ```obj-c
 + (id)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;
@@ -93,6 +105,8 @@ The `NSImage` is cached in an `NSCache` with the identifier provided.
 ```
 
 ##UIImage+BBlock.h
+
+###@interface UIImage(BBlock)
 
 Returns a `UIImage` rendered with the drawing code in the block.
 This method does not cache the image object. 
