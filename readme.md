@@ -15,7 +15,7 @@ Set the callback block to be called when the mouse **exits** the button.
 Set both the **enter* and **exit** callback blocks.
 
 ```obj-c
-- (void)setInCallback:(BBNSButtonCallback)inBlock
+- (void)setInCallback:(BBNSButtonCallback)inBlock andOutCallback:(BBNSButtonCallback)outBlock;
 ```
 
 ##BBlock.h
