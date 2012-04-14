@@ -28,7 +28,11 @@
     [image lockFocus];
     drawingBlock();
     [image unlockFocus];
+#if !__has_feature(objc_arc)
+    return [image autorelease];
+#else
     return image;
+#endif
 }
 
 + (NSImage *)imageWithIdentifier:(NSString *)identifier forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock{

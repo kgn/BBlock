@@ -28,7 +28,11 @@
     drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+#if !__has_feature(objc_arc)
+    return [image autorelease];
+#else
     return image;
+#endif
 }
 
 + (UIImage *)imageWithIdentifier:(NSString *)identifier forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock{
