@@ -1,5 +1,5 @@
 //
-//  NSTimer+BBlocks.h
+//  NSTimer+BBlock.h
 //  BBlock
 //
 //  Created by David Keegan on 3/12/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSTimer(BBlocks)
+@interface NSTimer(BBlock)
 
 + (id)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;
 + (id)timerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;

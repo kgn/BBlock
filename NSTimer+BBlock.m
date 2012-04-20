@@ -1,18 +1,18 @@
 //
-//  NSTimer+BBlocks.m
+//  NSTimer+BBlock.m
 //  BBlock
 //
 //  Created by David Keegan on 3/12/12.
 //  Copyright 2012 David Keegan. All rights reserved.
 //
 
-#import "NSTimer+BBlocks.h"
+#import "NSTimer+BBlock.h"
 
 @interface NSTimer(BBlockPrivate)
 + (void)executeBlock:(NSTimer *)timer;
 @end
 
-@implementation NSTimer(BBlocks)
+@implementation NSTimer(BBlock)
 
 + (void)executeBlock:(NSTimer *)timer{
     if([timer userInfo]){
