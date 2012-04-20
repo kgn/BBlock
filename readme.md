@@ -20,6 +20,14 @@ Set both the **enter* and **exit** callback blocks.
 - (void)setInCallback:(BBNSButtonCallback)inBlock andOutCallback:(BBNSButtonCallback)outBlock;
 ```
 
+##BBUISwipeGestureRecognizer.h
+
+###@interface BBUISwipeGestureRecognizer : UISwipeGestureRecognizer
+
+```obj-c
+- (id)initForDirection:(UISwipeGestureRecognizerDirection)direction withAction:(BBUISwipeGestureRecognizerAction)action;
+```
+
 ##BBlock.h
 
 ###@interface BBlock : NSObject
@@ -84,9 +92,9 @@ The `NSImage` is cached in an `NSCache` with the identifier provided.
 + (NSImage *)imageWithIdentifier:(NSString *)identifier forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock;
 ```
 
-##NSTimer+BBlocks.h
+##NSTimer+BBlock.h
 
-###@interface NSTimer(BBlocks)
+###@interface NSTimer(BBlock)
 
 ```obj-c
 + (id)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;
