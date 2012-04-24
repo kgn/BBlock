@@ -11,9 +11,13 @@
 @implementation NSURL(BBlock)
 
 -(void)accessSecurityScopedResourceWithBlock:(void (^)())block{
-    [self startAccessingSecurityScopedResource];
+    if([self respondsToSelector:@selector(startAccessingSecurityScopedResource)]){
+        [self startAccessingSecurityScopedResource];
+    }
     if(block)block();
-    [self stopAccessingSecurityScopedResource];
+    if([self respondsToSelector:@selector(stopAccessingSecurityScopedResource)]){
+        [self stopAccessingSecurityScopedResource];
+    }
 }
 
 @end
