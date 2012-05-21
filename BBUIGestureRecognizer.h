@@ -14,3 +14,11 @@ typedef void (^BBUISwipeGestureRecognizerAction)(BBUISwipeGestureRecognizer *);
 - (id)initForDirection:(UISwipeGestureRecognizerDirection)direction withAction:(BBUISwipeGestureRecognizerAction)action;
 
 @end
+
+
+@interface BBUIPinchGestureRecognizer : UIPinchGestureRecognizer
+
+typedef void (^BBUIPinchGestureRecognizerAction)(BBUIPinchGestureRecognizer *);
+- (id)initWithAction:(BBUIPinchGestureRecognizerAction)action;
+
+@end
