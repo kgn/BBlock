@@ -25,7 +25,9 @@
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    drawingBlock();
+    @autoreleasepool{
+        drawingBlock();
+    }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 #if !__has_feature(objc_arc)

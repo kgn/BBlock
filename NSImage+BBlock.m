@@ -26,7 +26,9 @@
 + (NSImage *)imageForSize:(NSSize)size withDrawingBlock:(void(^)())drawingBlock{
     NSImage *image = [[NSImage alloc] initWithSize:size];
     [image lockFocus];
-    drawingBlock();
+    @autoreleasepool{
+        drawingBlock();
+    }
     [image unlockFocus];
 #if !__has_feature(objc_arc)
     return [image autorelease];
