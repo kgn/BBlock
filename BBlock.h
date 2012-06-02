@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define BBlockSelf __block typeof(self)
+#define BBlockTypeOf(o) __block typeof(o)
+
 @interface BBlock : NSObject
 
 /// Execute the block on the main thread
