@@ -24,6 +24,10 @@
 }
 
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock{
+    if(size.width <= 0 || size.width <= 0){
+        return nil;
+    }
+    
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     @autoreleasepool{
         drawingBlock();
@@ -41,7 +45,9 @@
     UIImage *image = [[[self class] drawingCache] objectForKey:identifier];
     if(image == nil){
         image = [[self class] imageForSize:size withDrawingBlock:drawingBlock];
-        [[[self class] drawingCache] setObject:image forKey:identifier];
+        if(image != nil){
+            [[[self class] drawingCache] setObject:image forKey:identifier];
+        }
     }
     return image;
 }
