@@ -9,13 +9,7 @@
 #import "NSObject+BBlock.h"
 #import <objc/runtime.h>
 
-#if __has_feature(objc_arc)
-#define BBKVOObjectVoidBridge __bridge void *
-#else
-#define BBKVOObjectVoidBridge void *
-#endif
-
-static NSString *BBKVOObjectKey = @"BBKVOObjectKey";
+static char BBKVOObjectKey;
 
 @interface BBKVOObject : NSObject
 @end
@@ -49,9 +43,9 @@ static NSString *BBKVOObjectKey = @"BBKVOObjectKey";
     [self addObserver:kvoObject forKeyPath:keyPath options:options context:nil];
     
     NSString *identifier = [[NSProcessInfo processInfo] globallyUniqueString];
-    NSMutableDictionary *observers = objc_getAssociatedObject(self, (BBKVOObjectVoidBridge)BBKVOObjectKey) ?: [NSMutableDictionary dictionary];
+    NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey) ?: [NSMutableDictionary dictionary];
     [observers setObject:kvoObject forKey:identifier];
-    objc_setAssociatedObject(self, (BBKVOObjectVoidBridge)BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);    
+    objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);    
 #if !__has_feature(objc_arc)
     [kvoObject release];
 #endif    
@@ -59,9 +53,11 @@ static NSString *BBKVOObjectKey = @"BBKVOObjectKey";
 }
 
 - (void)removeObserverForToken:(NSString *)identifier{
-    NSMutableDictionary *observers = objc_getAssociatedObject(self, (BBKVOObjectVoidBridge)BBKVOObjectKey) ?: [NSMutableDictionary dictionary];   
-    [observers removeObjectForKey:identifier];
-    objc_setAssociatedObject(self, (BBKVOObjectVoidBridge)BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);      
+    NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey);
+    if(observers){
+        [observers removeObjectForKey:identifier];
+        objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);      
+    }
 }
 
 @end
