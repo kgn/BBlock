@@ -11,6 +11,7 @@
 @implementation BBlock
 
 + (void)dispatchOnMainThread:(void (^)())block{
+    NSParameterAssert(block != nil);    
     dispatch_async(dispatch_get_main_queue(), ^{
         block();
     });
