@@ -22,7 +22,7 @@
 }
 
 + (id)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
-    return [[self class] timerRepeats:NO withTimeInterval:timeInterval andBlock:block];
+    return [self timerRepeats:NO withTimeInterval:timeInterval andBlock:block];
 }
 
 + (id)timerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
@@ -39,7 +39,7 @@
 }
 
 + (id)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
-    return [[self class] scheduledTimerRepeats:NO withTimeInterval:timeInterval andBlock:block];
+    return [self scheduledTimerRepeats:NO withTimeInterval:timeInterval andBlock:block];
 }
 
 + (id)scheduledTimerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
