@@ -15,7 +15,7 @@
 #define BBlockWeakObject(o) __weak typeof([o weakReference])
 
 
-@interface BBlock
+@interface BBlock : NSObject
 
 /// Execute the block on the main thread
 + (void)dispatchOnMainThread:(void (^)())block;
