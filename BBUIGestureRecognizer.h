@@ -10,7 +10,7 @@
 
 @interface BBUISwipeGestureRecognizer : UISwipeGestureRecognizer
 
-typedef void (^BBUISwipeGestureRecognizerAction)(BBUISwipeGestureRecognizer *);
+typedef void (^BBUISwipeGestureRecognizerAction)(BBUISwipeGestureRecognizer *gesture);
 - (id)initForDirection:(UISwipeGestureRecognizerDirection)direction withAction:(BBUISwipeGestureRecognizerAction)action;
 
 @end
@@ -18,7 +18,7 @@ typedef void (^BBUISwipeGestureRecognizerAction)(BBUISwipeGestureRecognizer *);
 
 @interface BBUIPinchGestureRecognizer : UIPinchGestureRecognizer
 
-typedef void (^BBUIPinchGestureRecognizerAction)(BBUIPinchGestureRecognizer *);
+typedef void (^BBUIPinchGestureRecognizerAction)(BBUIPinchGestureRecognizer *gesture);
 - (id)initWithAction:(BBUIPinchGestureRecognizerAction)action;
 
 @end
