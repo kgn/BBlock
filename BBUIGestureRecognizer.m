@@ -65,3 +65,31 @@
 #endif
 
 @end
+
+@interface BBUITapGestureRecognizer()
+- (void)tapAction:(id)sender;
+@end
+
+@implementation BBUITapGestureRecognizer{
+    BBUITapGestureRecognizerAction _action;
+}
+
+- (id)initWithAction:(BBUITapGestureRecognizerAction)action{
+    if((self = [super initWithTarget:self action:@selector(tapAction:)])){
+        _action = [action copy];
+    }
+    return self;    
+}
+
+- (void)tapAction:(id)sender{
+    if(_action)_action(self);
+}
+
+#if !__has_feature(objc_arc)
+- (void)dealloc{
+    [_action release];
+    [super dealloc];
+}
+#endif
+
+@end
