@@ -9,7 +9,7 @@
 #import "NSApplication+BBlock.h"
 #import <objc/runtime.h>
 
-static NSString *key = @"kSheetBlocksKey";
+static char BBlockSheetKey;
 
 @implementation NSApplication(BBlock)
 
@@ -22,17 +22,17 @@ static NSString *key = @"kSheetBlocksKey";
        modalDelegate:self
       didEndSelector:@selector(_sheetDidEnd:returnCode:contextInfo:)
          contextInfo:NULL];
-    objc_setAssociatedObject(self, (__bridge const void *)(key), handler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &BBlockSheetKey, handler, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)_sheetDidEnd:(NSWindow*)sheet
           returnCode:(int)returnCode
          contextInfo:(void*)contextInfo {
     
-    void (^handler)(NSInteger returnCode) = objc_getAssociatedObject(self, (__bridge const void *)(key));
+    void (^handler)(NSInteger returnCode) = objc_getAssociatedObject(self, &BBlockSheetKey);
     [sheet orderOut:nil];
     handler(returnCode);
-    objc_setAssociatedObject(self, (__bridge const void *)(key), nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &BBlockSheetKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 @end
