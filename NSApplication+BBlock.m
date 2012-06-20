@@ -30,9 +30,9 @@ static NSString *key = @"kSheetBlocksKey";
          contextInfo:(void*)contextInfo {
     
     void (^handler)(NSInteger returnCode) = objc_getAssociatedObject(self, (__bridge const void *)(key));
+    [sheet orderOut:nil];
     handler(returnCode);
     objc_setAssociatedObject(self, (__bridge const void *)(key), nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [sheet orderOut:nil];
 }
 
 @end
