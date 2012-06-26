@@ -20,4 +20,11 @@
 /// Execute the block on the main thread
 + (void)dispatchOnMainThread:(void (^)())block;
 
+/// Exectute the block on a background thread but in a synchronous queue
++ (void)dispatchOnSynchronousQueue:(void (^)())block;
+
++ (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block;
++ (void)dispatchOnLowPriorityConcurrentQueue:(void (^)())block;
++ (void)dispatchOnHighPriorityConcurrentQueue:(void (^)())block;
+
 @end
