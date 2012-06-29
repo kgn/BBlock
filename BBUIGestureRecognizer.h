@@ -25,7 +25,14 @@ typedef void (^BBUIPinchGestureRecognizerAction)(BBUIPinchGestureRecognizer *ges
 
 @interface BBUITapGestureRecognizer : UITapGestureRecognizer
 
-typedef void (^BBUITapGestureRecognizerAction)(BBUITapGestureRecognizer *);
+typedef void (^BBUITapGestureRecognizerAction)(BBUITapGestureRecognizer *gesture);
 - (id)initWithAction:(BBUITapGestureRecognizerAction)action;
+
+@end
+
+@interface BBUIPanGestureRecognizer : UIPanGestureRecognizer
+
+typedef void (^BBUIPanGestureRecognizerAction)(BBUIPanGestureRecognizer *gesture);
+- (id)initWithAction:(BBUIPanGestureRecognizerAction)action;
 
 @end

@@ -93,3 +93,31 @@
 #endif
 
 @end
+
+@interface BBUIPanGestureRecognizer()
+- (void)panAction:(id)sender;
+@end
+
+@implementation BBUIPanGestureRecognizer{
+    BBUIPanGestureRecognizerAction _action;
+}
+
+- (id)initWithAction:(BBUIPanGestureRecognizerAction)action{
+    if((self = [super initWithTarget:self action:@selector(panAction:)])){
+        _action = [action copy];
+    }
+    return self;    
+}
+
+- (void)panAction:(id)sender{
+    if(_action)_action(self);
+}
+
+#if !__has_feature(objc_arc)
+- (void)dealloc{
+    [_action release];
+    [super dealloc];
+}
+#endif
+
+@end
