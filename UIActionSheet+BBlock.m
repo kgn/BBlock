@@ -22,23 +22,18 @@ static char UIAlertViewBBlockKey;
     if((self = [self initWithTitle:title delegate:self cancelButtonTitle:cancelTitle 
             destructiveButtonTitle:destructiveTitle otherButtonTitles:otherTitle, nil])){
         [self setCompletionBlock:block];
-        return self;
     }
-    return nil;    
+    return self;
 }
 
 - (void)setCompletionBlock:(UIActionSheetBBlock)block{
-    if(block != nil){
-        objc_setAssociatedObject((self.delegate = self), &UIAlertViewBBlockKey, 
-                                 [block copy], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    objc_setAssociatedObject((self.delegate = self), &UIAlertViewBBlockKey, 
+                             block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)actionSheet:(UIActionSheet *)sheetView clickedButtonAtIndex:(NSInteger)buttonIndex{
 	UIActionSheetBBlock block = objc_getAssociatedObject(self, &UIAlertViewBBlockKey);
-    if(block){
-        block(buttonIndex, sheetView);
-    }
+    if(block)block(buttonIndex, sheetView);
 }
 
 @end

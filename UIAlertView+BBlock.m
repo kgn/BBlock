@@ -28,17 +28,13 @@ static char UIAlertViewBBlockKey;
 }
 
 - (void)setCompletionBlock:(UIAlertViewBBlock)block{
-    if(block != nil){
-        objc_setAssociatedObject((self.delegate = self), &UIAlertViewBBlockKey, 
-                                 [block copy], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    objc_setAssociatedObject((self.delegate = self), &UIAlertViewBBlockKey, 
+                             block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 	UIAlertViewBBlock block = objc_getAssociatedObject(self, &UIAlertViewBBlockKey);
-    if(block){
-        block(buttonIndex, alertView);
-    }
+    if(block)block(buttonIndex, alertView);
 }
 
 @end
