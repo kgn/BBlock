@@ -43,11 +43,8 @@
 
 + (UIImage *)imageWithIdentifier:(NSString *)identifier forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock{
     UIImage *image = [[self drawingCache] objectForKey:identifier];
-    if(image == nil){
-        image = [self imageForSize:size withDrawingBlock:drawingBlock];
-        if(image != nil){
-            [[self drawingCache] setObject:image forKey:identifier];
-        }
+    if(image == nil && (image = [self imageForSize:size withDrawingBlock:drawingBlock])){
+        [[self drawingCache] setObject:image forKey:identifier];
     }
     return image;
 }
