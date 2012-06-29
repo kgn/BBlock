@@ -8,6 +8,10 @@
 
 #import "BBlock.h"
 
+@interface BBlock()
++ (void)dispatchOnConcurrentQueue:(long)queue withBlock:(void (^)())block;
+@end
+
 @implementation BBlock
 
 + (void)dispatchOnMainThread:(void (^)())block{
@@ -26,21 +30,20 @@
 }
 
 + (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block{
-    NSParameterAssert(block != nil);
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, block);
+    [self dispatchOnConcurrentQueue:DISPATCH_QUEUE_PRIORITY_DEFAULT withBlock:block];
 }
 
 + (void)dispatchOnLowPriorityConcurrentQueue:(void (^)())block{
-    NSParameterAssert(block != nil);
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-    dispatch_async(queue, block);
+    [self dispatchOnConcurrentQueue:DISPATCH_QUEUE_PRIORITY_LOW withBlock:block];
 }
 
 + (void)dispatchOnHighPriorityConcurrentQueue:(void (^)())block{
+    [self dispatchOnConcurrentQueue:DISPATCH_QUEUE_PRIORITY_HIGH withBlock:block];    
+}
+
++ (void)dispatchOnConcurrentQueue:(long)queue withBlock:(void (^)())block{
     NSParameterAssert(block != nil);
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    dispatch_async(queue, block);
+    dispatch_async(dispatch_get_global_queue(queue, 0), block);
 }
 
 @end
