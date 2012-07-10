@@ -23,6 +23,10 @@
 /// Exectute the block on a background thread but in a synchronous queue
 + (void)dispatchOnSynchronousQueue:(void (^)())block;
 
+/// Exectute the block on a background thread but in a synchronous queue,
+/// This queue should only be used for writing files to disk.
++ (void)dispatchOnSynchronousFileQueue:(void (^)())block;
+
 + (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block;
 + (void)dispatchOnLowPriorityConcurrentQueue:(void (^)())block;
 + (void)dispatchOnHighPriorityConcurrentQueue:(void (^)())block;

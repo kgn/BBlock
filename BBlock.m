@@ -29,6 +29,16 @@
     dispatch_async(queue, block);
 }
 
++ (void)dispatchOnSynchronousFileQueue:(void (^)())block{
+    NSParameterAssert(block != nil);
+    static dispatch_queue_t queue;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        queue = dispatch_queue_create("bblock.queue.serial.file", DISPATCH_QUEUE_SERIAL);
+    });
+    dispatch_async(queue, block);
+}
+
 + (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block{
     [self dispatchOnConcurrentQueue:DISPATCH_QUEUE_PRIORITY_DEFAULT withBlock:block];
 }
