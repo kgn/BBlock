@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+// Helper method for creating unique image identifiers
+#define BBlockImageIdentifier(fmt, ...) [NSString stringWithFormat:(@"%@%@" fmt), \
+    NSStringFromClass([self class]), NSStringFromSelector(_cmd), ##__VA_ARGS__]
+
 @interface UIImage(BBlock)
 
 /** Returns a `UIImage` rendered with the drawing code in the block. 

@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+// Helper method for creating unique image identifiers
+#define BBlockImageIdentifier(fmt, ...) [NSString stringWithFormat:(@"%@%@" fmt), \
+    NSStringFromClass([self class]), NSStringFromSelector(_cmd), ##__VA_ARGS__]
+
 @interface NSImage(BBlock)
 
 /** Returns a `NSImage` rendered with the drawing code in the block.
