@@ -29,9 +29,7 @@
     }
     
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    @autoreleasepool{
-        drawingBlock();
-    }
+    drawingBlock();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 #if !__has_feature(objc_arc)
