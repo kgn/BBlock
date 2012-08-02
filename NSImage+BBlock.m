@@ -24,6 +24,10 @@
 }
 
 + (NSImage *)imageForSize:(NSSize)size withDrawingBlock:(void(^)())drawingBlock{
+    if(size.width <= 0 || size.width <= 0){
+        return nil;
+    }
+    
     NSImage *image = [[NSImage alloc] initWithSize:size];
     [image lockFocus];
     drawingBlock();
