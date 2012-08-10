@@ -17,4 +17,13 @@
     }];
 }
 
+- (NSArray *)arrayWithObjectsMappedWithBlock:(id(^)(id obj))block{
+    NSParameterAssert(block != nil);
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[self count]];
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        [array addObject:block(obj)];
+    }];
+    return [NSArray arrayWithArray:array];
+}
+
 @end
