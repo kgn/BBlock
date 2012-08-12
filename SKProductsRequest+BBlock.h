@@ -10,9 +10,9 @@
 
 @interface SKProductsRequest(BBlock)
 
-typedef void (^SKProductsRequestBBlock)(SKProductsResponse *response);
+typedef void (^SKProductsRequestBBlock)(SKProductsResponse *response, NSError *error);
 
-+ (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andCompletionBlock:(SKProductsRequestBBlock)completionBlock;
-- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andCompletionBlock:(SKProductsRequestBBlock)completionBlock;
++ (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
+- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
 
 @end
