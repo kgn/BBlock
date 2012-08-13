@@ -20,22 +20,52 @@ Set both the **enter* and **exit** callback blocks.
 - (void)setInCallback:(BBNSButtonCallback)inBlock andOutCallback:(BBNSButtonCallback)outBlock;
 ```
 
-##BBUISwipeGestureRecognizer.h
-
-###@interface BBUISwipeGestureRecognizer : UISwipeGestureRecognizer
-
-```obj-c
-- (id)initForDirection:(UISwipeGestureRecognizerDirection)direction withAction:(BBUISwipeGestureRecognizerAction)action;
-```
-
 ##BBlock.h
 
 ###@interface BBlock : NSObject
+
+For when you need a weak reference of an object, example: `BBlockWeakObject(obj) wobj = obj;`
+
+For when you need a weak reference to self, example: `BBlockWeakSelf wself = self;`
 
 Execute the block on the main thread
 
 ```obj-c
 + (void)dispatchOnMainThread:(void (^)())block;
+```
+
+Exectute the block on a background thread but in a synchronous queue
+
+```obj-c
++ (void)dispatchOnSynchronousQueue:(void (^)())block;
+```
+
+Exectute the block on a background thread but in a synchronous queue,
+
+This queue should only be used for writing files to disk.
+
+```obj-c
++ (void)dispatchOnSynchronousFileQueue:(void (^)())block;
+```
+
+```obj-c
++ (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block;
+```
+
+```obj-c
++ (void)dispatchOnLowPriorityConcurrentQueue:(void (^)())block;
+```
+
+```obj-c
++ (void)dispatchOnHighPriorityConcurrentQueue:(void (^)())block;
+```
+
+##NSApplication+BBlock.h
+
+###@interface NSApplication (BBlock)
+
+```obj-c
+- (void)beginSheet:(NSWindow*)sheet modalForWindow:(NSWindow*)modalWindow completionHandler:(void (^)(NSInteger returnCode))handler;
 ```
 
 ##NSArray+BBlock.h
@@ -46,6 +76,12 @@ Enumerate each object in the array.
 
 ```obj-c
 - (void)enumerateEachObjectUsingBlock:(void(^)(id obj))block;
+```
+
+Apply the block to each object in the array and return an array of resulting objects
+
+```obj-c
+- (NSArray *)arrayWithObjectsMappedWithBlock:(id(^)(id obj))block;
 ```
 
 ##NSButton+BBlock.h
@@ -74,6 +110,20 @@ If no `alternateImage` is set `image` will be used instead.
 - (void)setAlternateBackgroundImage:(NSImage *)alternateBackgroundImage;
 ```
 
+##NSDictionary+BBlock.h
+
+###@interface NSDictionary(BBlock)
+
+Enumerate each key and object in the dictioanry.
+
+```obj-c
+- (void)enumerateEachKeyAndObjectUsingBlock:(void(^)(id key, id obj))block;
+```
+
+```obj-c
+- (void)enumerateEachSortedKeyAndObjecUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block;
+```
+
 ##NSImage+BBlock.h
 
 ###@interface NSImage(BBlock)
@@ -90,6 +140,18 @@ The `NSImage` is cached in an `NSCache` with the identifier provided.
 
 ```obj-c
 + (NSImage *)imageWithIdentifier:(NSString *)identifier forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock;
+```
+
+##NSObject+BBlock.h
+
+###@interface NSObject(BBlock)
+
+```obj-c
+- (NSString *)addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(NSObjectBBlock)block;
+```
+
+```obj-c
+- (void)removeObserverForToken:(NSString *)identifier;
 ```
 
 ##NSTimer+BBlock.h
@@ -110,6 +172,88 @@ The `NSImage` is cached in an `NSCache` with the identifier provided.
 
 ```obj-c
 + (id)scheduledTimerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block;
+```
+
+##NSURL+BBlock.h
+
+###@interface NSURL(BBlock)
+
+Access a security scoped bookmark for sandboxed mac apps.
+
+This method starts the access, runs the block, then stops the access.
+
+```obj-c
+-(void)accessSecurityScopedResourceWithBlock:(void (^)())block;
+```
+
+##SKProductsRequest+BBlock.h
+
+###@interface SKProductsRequest(BBlock)
+
+Request a StoreKit response for a set of product identifiers
+
+```obj-c
++ (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
+```
+
+Request a StoreKit response for a set of product identifiers
+
+```obj-c
+- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
+```
+
+##UIActionSheet+BBlock.h
+
+###@interface UIActionSheet(BBlock)
+
+```obj-c
+- (void)setCompletionBlock:(UIActionSheetBBlock)block;
+```
+
+```obj-c
+- (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitle:(NSString *)otherTitle completionBlock:(UIActionSheetBBlock)block;
+```
+
+##UIAlertView+BBlock.h
+
+###@interface UIAlertView(BBlock)
+
+```obj-c
+- (void)setCompletionBlock:(UIAlertViewBBlock)block;
+```
+
+```obj-c
+- (id)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelTitle otherButtonTitle:(NSString *)otherButtonTitle completionBlock:(UIAlertViewBBlock)block;
+```
+
+##UIButton+BBlock.h
+
+###@interface UIButton(BBlock)
+
+```obj-c
+- (void)addActionForControlEvents:(UIControlEvents)events withBlock:(BBlockUIButtonBlock)block;
+```
+
+##UIGestureRecognizer+BBlock.h
+
+###@interface UISwipeGestureRecognizer(BBlock)
+
+```obj-c
+- (id)initWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block;
+```
+
+```obj-c
++ (id)gestureWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block;
+```
+
+###@interface UIGestureRecognizer(BBlock)
+
+```obj-c
+- (id)initWithBlock:(UIGestureRecognizerBBlock)block;
+```
+
+```obj-c
++ (id)gestureWithBlock:(UIGestureRecognizerBBlock)block;
 ```
 
 ##UIImage+BBlock.h
