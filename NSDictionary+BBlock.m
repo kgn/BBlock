@@ -17,7 +17,7 @@
     }];
 }
 
-- (void)enumerateEachSortedKeyAndObjecUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block{
+- (void)enumerateEachSortedKeyAndObjectUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block{
     NSParameterAssert(block != nil);
     NSArray *keys = [[self allKeys] sortedArrayUsingSelector:@selector(compare:)];
     [keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

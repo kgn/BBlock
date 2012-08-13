@@ -13,6 +13,6 @@
 /// Enumerate each key and object in the dictioanry.
 - (void)enumerateEachKeyAndObjectUsingBlock:(void(^)(id key, id obj))block;
 
-- (void)enumerateEachSortedKeyAndObjecUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block;
+- (void)enumerateEachSortedKeyAndObjectUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block;
 
 @end

@@ -121,7 +121,7 @@ Enumerate each key and object in the dictioanry.
 ```
 
 ```obj-c
-- (void)enumerateEachSortedKeyAndObjecUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block;
+- (void)enumerateEachSortedKeyAndObjectUsingBlock:(void(^)(id key, id obj, NSUInteger idx))block;
 ```
 
 ##NSImage+BBlock.h
@@ -195,8 +195,6 @@ Request a StoreKit response for a set of product identifiers
 ```obj-c
 + (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
 ```
-
-Request a StoreKit response for a set of product identifiers
 
 ```obj-c
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;

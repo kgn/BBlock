@@ -11,10 +11,6 @@
 
 static char BBlockUIButtonBlockKey;
 
-@interface UIButton(BBlockPrivate)
-- (void)blockAction:(UIButton *)button forEvent:(UIEvent *)event;
-@end
-
 @implementation UIButton(BBlock)
 
 // TODO: this is a very poor implementation as it does not 'add'

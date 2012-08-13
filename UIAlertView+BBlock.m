@@ -11,8 +11,8 @@
 
 static char UIAlertViewBBlockKey;
 
-@interface UIAlertView(BBlockPrivate)<UIAlertViewDelegate>
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+@interface UIAlertView(BBlockPrivate)
+<UIAlertViewDelegate>
 @end
 
 @implementation UIAlertView(BBlock)

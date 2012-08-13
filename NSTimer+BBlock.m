@@ -8,10 +8,6 @@
 
 #import "NSTimer+BBlock.h"
 
-@interface NSTimer(BBlockPrivate)
-+ (void)executeBlock:(NSTimer *)timer;
-@end
-
 @implementation NSTimer(BBlock)
 
 + (void)executeBlock:(NSTimer *)timer{

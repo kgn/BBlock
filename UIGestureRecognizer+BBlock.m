@@ -11,10 +11,6 @@
 
 static char UIGestureRecognizerBBlockKey;
 
-@interface UIGestureRecognizer(BBlockPrivate)
-- (void)gestureAction:(UIGestureRecognizer *)gesture;
-@end
-
 @implementation UIGestureRecognizer(BBlock)
 
 - (id)initWithBlock:(UIGestureRecognizerBBlock)block{

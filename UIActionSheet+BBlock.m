@@ -11,8 +11,8 @@
 
 static char UIAlertViewBBlockKey;
 
-@interface UIActionSheet(BBlockPrivate)<UIActionSheetDelegate>
-- (void)actionSheet:(UIActionSheet *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+@interface UIActionSheet(BBlockPrivate)
+<UIActionSheetDelegate>
 @end
 
 @implementation UIActionSheet(BBlock)

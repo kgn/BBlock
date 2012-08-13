@@ -8,10 +8,6 @@
 
 #import "UIImage+BBlock.h"
 
-@interface UIImage(BBlockPrivate)
-+ (NSCache *)drawingCache;
-@end
-
 @implementation UIImage(BBlock)
 
 + (NSCache *)drawingCache{

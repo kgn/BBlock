@@ -8,10 +8,6 @@
 
 #import "BBlock.h"
 
-@interface BBlock()
-+ (void)dispatchOnConcurrentQueue:(long)queue withBlock:(void (^)())block;
-@end
-
 @implementation BBlock
 
 + (void)dispatchOnMainThread:(void (^)())block{
