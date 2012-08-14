@@ -265,10 +265,18 @@ This method does not cache the image object.
 + (UIImage *)imageForSize:(CGSize)size withDrawingBlock:(void(^)())drawingBlock;
 ```
 
+```obj-c
++ (UIImage *)imageForSize:(CGSize)size opaque:(BOOL)opaque withDrawingBlock:(void(^)())drawingBlock;
+```
+
 Returns a cached `UIImage` rendered with the drawing code in the block.
 The `UIImage` is cached in an `NSCache` with the identifier provided. 
 
 ```obj-c
 + (UIImage *)imageWithIdentifier:(NSString *)identifier forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
+```
+
+```obj-c
++ (UIImage *)imageWithIdentifier:(NSString *)identifier opaque:(BOOL)opaque forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
 ```
 
