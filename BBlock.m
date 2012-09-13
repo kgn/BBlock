@@ -22,7 +22,9 @@
     dispatch_once(&once, ^{
         queue = dispatch_queue_create("bblock.queue.serial", DISPATCH_QUEUE_SERIAL);
     });
-    dispatch_async(queue, block);
+    if(queue){
+        dispatch_async(queue, block);
+    }
 }
 
 + (void)dispatchOnSynchronousFileQueue:(void (^)())block{
@@ -32,7 +34,9 @@
     dispatch_once(&once, ^{
         queue = dispatch_queue_create("bblock.queue.serial.file", DISPATCH_QUEUE_SERIAL);
     });
-    dispatch_async(queue, block);
+    if(queue){
+        dispatch_async(queue, block);
+    }
 }
 
 + (void)dispatchOnDefaultPriorityConcurrentQueue:(void (^)())block{
