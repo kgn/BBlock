@@ -44,7 +44,7 @@ static char BBKVOObjectKey;
     
     NSString *identifier = [[NSProcessInfo processInfo] globallyUniqueString];
     NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey) ?: [NSMutableDictionary dictionary];
-    [observers setObject:kvoObject forKey:identifier];
+    [observers setObject:@{@"observer":kvoObject, @"keypath":keyPath} forKey:identifier];
     objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);    
 #if !__has_feature(objc_arc)
     [kvoObject release];
@@ -55,6 +55,10 @@ static char BBKVOObjectKey;
 - (void)removeObserverForToken:(NSString *)identifier{
     NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey);
     if(observers){
+        if(observers[identifier]){
+            [self removeObserver:observers[identifier][@"observer"] forKeyPath:observers[identifier][@"keypath"]];
+        }
+        
         [observers removeObjectForKey:identifier];
         objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);      
     }
