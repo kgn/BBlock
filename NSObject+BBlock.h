@@ -13,5 +13,6 @@
 typedef void (^NSObjectBBlock)(NSString *keyPath, id object, NSDictionary *change);
 - (NSString *)addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(NSObjectBBlock)block;
 - (void)removeObserverForToken:(NSString *)identifier;
+- (void)removeObserverBlocksForKeyPath:(NSString *)keyPath;
 
 @end

@@ -64,4 +64,17 @@ static char BBKVOObjectKey;
     }
 }
 
+- (void)removeObserverBlocksForKeyPath:(NSString *)keyPath{
+    NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey);
+    if(observers){
+        for(NSString *identifier in [observers allKeys]){
+            if([observers[identifier][@"keypath"] isEqualToString:keyPath]){
+                [self removeObserver:observers[identifier][@"observer"] forKeyPath:observers[identifier][@"keypath"]];
+                [observers removeObjectForKey:identifier];                
+            }
+        }
+        objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);
+    }
+}
+
 @end
