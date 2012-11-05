@@ -77,4 +77,10 @@ static char BBKVOObjectKey;
     }
 }
 
+- (void)changeValueWithKey:(NSString *)key changeBlock:(void(^)())changeBlock{
+    [self willChangeValueForKey:key];
+    changeBlock();
+    [self didChangeValueForKey:key];
+}
+
 @end

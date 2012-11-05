@@ -15,4 +15,6 @@ typedef void (^NSObjectBBlock)(NSString *keyPath, id object, NSDictionary *chang
 - (void)removeObserverForToken:(NSString *)identifier;
 - (void)removeObserverBlocksForKeyPath:(NSString *)keyPath;
 
+- (void)changeValueWithKey:(NSString *)key changeBlock:(void(^)())changeBlock;
+
 @end
