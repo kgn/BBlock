@@ -20,6 +20,9 @@
 /// Execute the block on the main thread
 + (void)dispatchOnMainThread:(void (^)())block;
 
+/// Execute the block on the main thread after a specified number of seconds
++ (void)dispatchAfter:(NSTimeInterval)delay onMainThread:(void (^)())block;
+
 /// Exectute the block on a background thread but in a synchronous queue
 + (void)dispatchOnSynchronousQueue:(void (^)())block;
 

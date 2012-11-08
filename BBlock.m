@@ -15,6 +15,12 @@
     dispatch_async(dispatch_get_main_queue(), block);
 }
 
++ (void)dispatchAfter:(NSTimeInterval)delay onMainThread:(void (^)())block{
+    NSParameterAssert(block != nil);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delay*NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), block);
+}
+
 + (void)dispatchOnSynchronousQueue:(void (^)())block{
     NSParameterAssert(block != nil);
     static dispatch_queue_t queue;
