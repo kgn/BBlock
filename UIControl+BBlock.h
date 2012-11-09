@@ -1,5 +1,5 @@
 //
-//  UIButton+BBlock.h
+//  UIControl+BBlock.h
 //  BBlock
 //
 //  Created by David Keegan on 7/16/12.
@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton(BBlock)
+@interface UIControl(BBlock)
 
 // WARNING: this category is under developement and is not yet suitable for production
 
-typedef void (^BBlockUIButtonBlock)(UIButton *button, UIEvent *event);
-- (void)addActionForControlEvents:(UIControlEvents)events withBlock:(BBlockUIButtonBlock)block;
+typedef void (^BBlockUIControlBlock)(id control, UIEvent *event);
+- (void)addActionForControlEvents:(UIControlEvents)events withBlock:(BBlockUIControlBlock)block;
 
 @end
