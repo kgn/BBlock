@@ -10,9 +10,9 @@
 
 @interface UIGestureRecognizer(BBlock)
 
-typedef void (^UIGestureRecognizerBBlock)(UIGestureRecognizer *gesture);
+typedef void (^UIGestureRecognizerBBlock)(id gestureRecognizer);
 - (id)initWithBlock:(UIGestureRecognizerBBlock)block;
-+ (id)gestureWithBlock:(UIGestureRecognizerBBlock)block;
++ (id)gestureRecognizerWithBlock:(UIGestureRecognizerBBlock)block;
 
 @end
 
@@ -20,7 +20,7 @@ typedef void (^UIGestureRecognizerBBlock)(UIGestureRecognizer *gesture);
 
 - (id)initWithDirection:(UISwipeGestureRecognizerDirection)direction 
                andBlock:(UIGestureRecognizerBBlock)block;
-+ (id)gestureWithDirection:(UISwipeGestureRecognizerDirection)direction 
-                  andBlock:(UIGestureRecognizerBBlock)block;
++ (id)gestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction
+                            andBlock:(UIGestureRecognizerBBlock)block;
 
 @end
