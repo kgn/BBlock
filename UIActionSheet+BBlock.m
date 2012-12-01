@@ -9,17 +9,27 @@
 #import "UIActionSheet+BBlock.h"
 #import <objc/runtime.h>
 
-static char UIAlertViewBBlockKey;
+static char UIActionSheetBBlockKey;
+static char UIActionSheetDelegateBBlockKey;
 
-@interface UIActionSheet(BBlockPrivate)
+@interface UIActionSheetDelegate : NSObject
 <UIActionSheetDelegate>
+@end
+
+@implementation UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)sheetView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	UIActionSheetBBlock block = objc_getAssociatedObject(self, &UIActionSheetBBlockKey);
+    if(block)block(buttonIndex, sheetView);
+}
+
 @end
 
 @implementation UIActionSheet(BBlock)
 
 - (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle 
    otherButtonTitle:(NSString *)otherTitle completionBlock:(UIActionSheetBBlock)block{
-    if((self = [self initWithTitle:title delegate:self cancelButtonTitle:cancelTitle 
+    if((self = [self initWithTitle:title delegate:nil cancelButtonTitle:cancelTitle
             destructiveButtonTitle:destructiveTitle otherButtonTitles:otherTitle, nil])){
         [self setCompletionBlock:block];
     }
@@ -27,13 +37,10 @@ static char UIAlertViewBBlockKey;
 }
 
 - (void)setCompletionBlock:(UIActionSheetBBlock)block{
-    objc_setAssociatedObject((self.delegate = self), &UIAlertViewBBlockKey, 
-                             block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (void)actionSheet:(UIActionSheet *)sheetView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	UIActionSheetBBlock block = objc_getAssociatedObject(self, &UIAlertViewBBlockKey);
-    if(block)block(buttonIndex, sheetView);
+    UIActionSheetDelegate *actionSheetDelegate = [[UIActionSheetDelegate alloc] init];
+    objc_setAssociatedObject(self, &UIActionSheetDelegateBBlockKey, actionSheetDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(actionSheetDelegate, &UIActionSheetBBlockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = actionSheetDelegate;
 }
 
 @end
