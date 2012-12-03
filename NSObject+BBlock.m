@@ -28,12 +28,6 @@ static char BBKVOObjectKey;
         _block(keyPath, object, change);
     }
 }
-#if !__has_feature(objc_arc)
-- (void)dealloc{
-    [_block release];
-    [super dealloc];
-}
-#endif
 @end
 
 @implementation NSObject(BBlock)
@@ -45,10 +39,7 @@ static char BBKVOObjectKey;
     NSString *identifier = [[NSProcessInfo processInfo] globallyUniqueString];
     NSMutableDictionary *observers = objc_getAssociatedObject(self, &BBKVOObjectKey) ?: [NSMutableDictionary dictionary];
     [observers setObject:@{@"observer":kvoObject, @"keypath":keyPath} forKey:identifier];
-    objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);    
-#if !__has_feature(objc_arc)
-    [kvoObject release];
-#endif    
+    objc_setAssociatedObject(self, &BBKVOObjectKey, observers, OBJC_ASSOCIATION_RETAIN);      
     return identifier;
 }
 

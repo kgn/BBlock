@@ -28,9 +28,6 @@
                                   selector:@selector(executeBlock:) 
                                   userInfo:_block 
                                    repeats:repeats];
-#if !__has_feature(objc_arc)
-    [_block release];
-#endif
     return timer;
 }
 
@@ -45,9 +42,6 @@
                                            selector:@selector(executeBlock:) 
                                            userInfo:_block 
                                             repeats:repeats];
-#if !__has_feature(objc_arc)
-    [_block release];
-#endif
     return timer;
 }
 
