@@ -9,20 +9,19 @@
 #import "UIActionSheet+BBlock.h"
 #import <objc/runtime.h>
 
-static char UIActionSheetBBlockKey;
 static char UIActionSheetDelegateBBlockKey;
 
 @interface UIActionSheetDelegate : NSObject
 <UIActionSheetDelegate>
+@property (strong, nonatomic) UIActionSheetBBlock block;
 @end
 
 @implementation UIActionSheetDelegate
-
 - (void)actionSheet:(UIActionSheet *)sheetView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	UIActionSheetBBlock block = objc_getAssociatedObject(self, &UIActionSheetBBlockKey);
-    if(block)block(buttonIndex, sheetView);
+    if(self.block){
+        self.block(buttonIndex, sheetView);
+    }
 }
-
 @end
 
 @implementation UIActionSheet(BBlock)
@@ -39,7 +38,7 @@ static char UIActionSheetDelegateBBlockKey;
 - (void)setCompletionBlock:(UIActionSheetBBlock)block{
     UIActionSheetDelegate *actionSheetDelegate = [[UIActionSheetDelegate alloc] init];
     objc_setAssociatedObject(self, &UIActionSheetDelegateBBlockKey, actionSheetDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(actionSheetDelegate, &UIActionSheetBBlockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    actionSheetDelegate.block = block;
     self.delegate = actionSheetDelegate;
 }
 

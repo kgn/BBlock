@@ -9,25 +9,24 @@
 #import "SKProductsRequest+BBlock.h"
 #import <objc/runtime.h>
 
-static char SKProductsRequestBBlockKey;
 static char SKProductsRequestDelegateBBlockKey;
 
 @interface SKProductsRequestBBlockDelegate : NSObject
 <SKProductsRequestDelegate>
+@property (strong, nonatomic) SKProductsRequestBBlock block;
 @end
 
 @implementation SKProductsRequestBBlockDelegate
-
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
-	SKProductsRequestBBlock block = objc_getAssociatedObject(self, &SKProductsRequestBBlockKey);
-    block(response, nil);
+    if(self.block){
+        self.block(response, nil);
+    }
 }
-
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
-	SKProductsRequestBBlock block = objc_getAssociatedObject(self, &SKProductsRequestBBlockKey);
-    block(nil, error);
+    if(self.block){
+        self.block(nil, error);
+    }
 }
-
 @end
 
 @implementation SKProductsRequest(BBlock)
@@ -40,9 +39,10 @@ static char SKProductsRequestDelegateBBlockKey;
     NSParameterAssert(block != nil);
     if((self = [self initWithProductIdentifiers:productIdentifiers])){
         SKProductsRequestBBlockDelegate *productsRequestDelegate = [[SKProductsRequestBBlockDelegate alloc] init];
-        objc_setAssociatedObject(self, &SKProductsRequestDelegateBBlockKey, productsRequestDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(productsRequestDelegate, &SKProductsRequestBBlockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        objc_setAssociatedObject(self, &SKProductsRequestDelegateBBlockKey,
+                                 productsRequestDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         self.delegate = productsRequestDelegate;
+        productsRequestDelegate.block = block;
         [self start];
     }
     return self;

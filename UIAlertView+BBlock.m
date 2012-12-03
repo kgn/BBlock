@@ -9,20 +9,19 @@
 #import "UIAlertView+BBlock.h"
 #import <objc/runtime.h>
 
-static char UIAlertViewBBlockKey;
 static char UIAlertViewDelegateBBlockKey;
 
 @interface UIAlertViewBBlockDelegate : NSObject
 <UIAlertViewDelegate>
+@property (strong, nonatomic) UIAlertViewBBlock block;
 @end
 
 @implementation UIAlertViewBBlockDelegate
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	UIAlertViewBBlock block = objc_getAssociatedObject(self, &UIAlertViewBBlockKey);
-    if(block)block(buttonIndex, alertView);
+    if(self.block){
+        self.block(buttonIndex, alertView);
+    }
 }
-
 @end
 
 @implementation UIAlertView(BBlock)
@@ -40,7 +39,7 @@ static char UIAlertViewDelegateBBlockKey;
 - (void)setCompletionBlock:(UIAlertViewBBlock)block{
     UIAlertViewBBlockDelegate *alertViewDelegate = [[UIAlertViewBBlockDelegate alloc] init];
     objc_setAssociatedObject(self, &UIAlertViewDelegateBBlockKey, alertViewDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(alertViewDelegate, &UIAlertViewBBlockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    alertViewDelegate.block = block;
     self.delegate = alertViewDelegate;
 }
 
