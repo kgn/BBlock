@@ -20,12 +20,14 @@
 }
 
 + (UIImage *)imageForSize:(CGSize)size opaque:(BOOL)opaque withDrawingBlock:(void(^)())drawingBlock{
-    if(size.width <= 0 || size.height <= 0){
+    if(size.width <= 0.0f || size.height <= 0.0f){
         return nil;
     }
     
     UIGraphicsBeginImageContextWithOptions(size, opaque, 0.0f);
-    drawingBlock();
+    if(drawingBlock){
+        drawingBlock();
+    }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
