@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 
 /// For when you need a weak reference of an object, example: `BBlockWeakObject(obj) wobj = obj;`
-#define BBlockWeakObject(o) __weak __typeof__((__typeof__(o))o)
+#define BBlockWeakObject(o) __typeof__(o) __weak
 
 /// For when you need a weak reference to self, example: `BBlockWeakSelf wself = self;`
 #define BBlockWeakSelf BBlockWeakObject(self)
-
 
 @interface BBlock : NSObject
 
