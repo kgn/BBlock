@@ -26,7 +26,7 @@ static char UIActionSheetDelegateBBlockKey;
 
 @implementation UIActionSheet(BBlock)
 
-- (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle 
+- (instancetype)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle 
    otherButtonTitle:(NSString *)otherTitle completionBlock:(UIActionSheetBBlock)block{
     if((self = [self initWithTitle:title delegate:nil cancelButtonTitle:cancelTitle
             destructiveButtonTitle:destructiveTitle otherButtonTitles:otherTitle, nil])){

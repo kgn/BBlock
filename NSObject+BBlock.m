@@ -17,7 +17,7 @@ static char BBKVOObjectKey;
 @implementation BBKVOObject{
     NSObjectBBlock _block;
 }
-- (id)initWithBlock:(NSObjectBBlock)block{
+- (instancetype)initWithBlock:(NSObjectBBlock)block{
     if((self = [super init])){
         _block = [block copy];
     }

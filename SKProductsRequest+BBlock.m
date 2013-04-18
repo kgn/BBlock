@@ -31,11 +31,11 @@ static char SKProductsRequestDelegateBBlockKey;
 
 @implementation SKProductsRequest(BBlock)
 
-+ (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block{
++ (instancetype)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block{
     return [[[self class] alloc] initWithProductIdentifiers:productIdentifiers andBlock:block];
 }
 
-- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block{
+- (instancetype)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block{
     NSParameterAssert(block != nil);
     if((self = [self initWithProductIdentifiers:productIdentifiers])){
         SKProductsRequestBBlockDelegate *productsRequestDelegate = [[SKProductsRequestBBlockDelegate alloc] init];

@@ -13,7 +13,7 @@
 typedef void (^SKProductsRequestBBlock)(SKProductsResponse *response, NSError *error);
 
 /// Request a StoreKit response for a set of product identifiers
-+ (id)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
-- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
++ (instancetype)requestWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
+- (instancetype)initWithProductIdentifiers:(NSSet *)productIdentifiers andBlock:(SKProductsRequestBBlock)block;
 
 @end

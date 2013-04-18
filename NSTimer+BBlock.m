@@ -17,11 +17,11 @@
     }
 }
 
-+ (id)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
++ (instancetype)timerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
     return [self timerRepeats:NO withTimeInterval:timeInterval andBlock:block];
 }
 
-+ (id)timerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
++ (instancetype)timerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
     void (^_block)() = [block copy];
     id timer = [self timerWithTimeInterval:timeInterval 
                                     target:self 
@@ -31,11 +31,11 @@
     return timer;
 }
 
-+ (id)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
     return [self scheduledTimerRepeats:NO withTimeInterval:timeInterval andBlock:block];
 }
 
-+ (id)scheduledTimerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
++ (instancetype)scheduledTimerRepeats:(BOOL)repeats withTimeInterval:(NSTimeInterval)timeInterval andBlock:(void (^)())block{
     void (^_block)() = [block copy];
     id timer = [self scheduledTimerWithTimeInterval:timeInterval 
                                              target:self 

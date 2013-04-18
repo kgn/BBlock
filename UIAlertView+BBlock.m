@@ -26,8 +26,8 @@ static char UIAlertViewDelegateBBlockKey;
 
 @implementation UIAlertView(BBlock)
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelTitle 
-     otherButtonTitle:(NSString *)otherButtonTitle completionBlock:(UIAlertViewBBlock)block{
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelTitle
+             otherButtonTitle:(NSString *)otherButtonTitle completionBlock:(UIAlertViewBBlock)block{
     if((self = [self initWithTitle:title message:message delegate:nil
                   cancelButtonTitle:cancelTitle otherButtonTitles:otherButtonTitle, nil])){
         [self setCompletionBlock:block];

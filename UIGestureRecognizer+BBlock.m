@@ -13,7 +13,7 @@ static char UIGestureRecognizerBBlockKey;
 
 @implementation UIGestureRecognizer(BBlock)
 
-- (id)initWithBlock:(UIGestureRecognizerBBlock)block{
+- (instancetype)initWithBlock:(UIGestureRecognizerBBlock)block{
     if((self = [self initWithTarget:self action:@selector(gestureAction:)])){
         objc_setAssociatedObject(self, &UIGestureRecognizerBBlockKey, 
                                  block, OBJC_ASSOCIATION_COPY_NONATOMIC);        
@@ -21,7 +21,7 @@ static char UIGestureRecognizerBBlockKey;
     return self;
 }
 
-+ (id)gestureRecognizerWithBlock:(UIGestureRecognizerBBlock)block{
++ (instancetype)gestureRecognizerWithBlock:(UIGestureRecognizerBBlock)block{
     return [[[self class] alloc] initWithBlock:block];
 }
 
@@ -37,14 +37,14 @@ static char UIGestureRecognizerBBlockKey;
 
 @implementation UISwipeGestureRecognizer(BBlock)
 
-- (id)initWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block{
+- (instancetype)initWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block{
     if((self = [self initWithBlock:block])){
         self.direction = direction;
     }
     return self;
 }
 
-+ (id)gestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block{
++ (instancetype)gestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction andBlock:(UIGestureRecognizerBBlock)block{
     return [[[self class] alloc] initWithDirection:direction andBlock:block];
 }
 

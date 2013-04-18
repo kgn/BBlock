@@ -14,7 +14,7 @@ typedef void (^UIAlertViewBBlock)(NSInteger buttonIndex, UIAlertView *alertView)
 
 - (void)setCompletionBlock:(UIAlertViewBBlock)block;
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelTitle 
-   otherButtonTitle:(NSString *)otherButtonTitle completionBlock:(UIAlertViewBBlock)block;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelTitle
+             otherButtonTitle:(NSString *)otherButtonTitle completionBlock:(UIAlertViewBBlock)block;
 
 @end

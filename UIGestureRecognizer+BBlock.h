@@ -11,16 +11,16 @@
 @interface UIGestureRecognizer(BBlock)
 
 typedef void (^UIGestureRecognizerBBlock)(id gestureRecognizer);
-- (id)initWithBlock:(UIGestureRecognizerBBlock)block;
-+ (id)gestureRecognizerWithBlock:(UIGestureRecognizerBBlock)block;
+- (instancetype)initWithBlock:(UIGestureRecognizerBBlock)block;
++ (instancetype)gestureRecognizerWithBlock:(UIGestureRecognizerBBlock)block;
 
 @end
 
 @interface UISwipeGestureRecognizer(BBlock)
 
-- (id)initWithDirection:(UISwipeGestureRecognizerDirection)direction 
-               andBlock:(UIGestureRecognizerBBlock)block;
-+ (id)gestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction
-                            andBlock:(UIGestureRecognizerBBlock)block;
+- (instancetype)initWithDirection:(UISwipeGestureRecognizerDirection)direction
+                         andBlock:(UIGestureRecognizerBBlock)block;
++ (instancetype)gestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction
+                                      andBlock:(UIGestureRecognizerBBlock)block;
 
 @end

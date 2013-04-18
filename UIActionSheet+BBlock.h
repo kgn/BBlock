@@ -14,7 +14,7 @@ typedef void (^UIActionSheetBBlock)(NSInteger buttonIndex, UIActionSheet *action
 
 - (void)setCompletionBlock:(UIActionSheetBBlock)block;
 
-- (id)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle 
-   otherButtonTitle:(NSString *)otherTitle completionBlock:(UIActionSheetBBlock)block;
+- (instancetype)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle
+             otherButtonTitle:(NSString *)otherTitle completionBlock:(UIActionSheetBBlock)block;
 
 @end
