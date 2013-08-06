@@ -49,4 +49,8 @@
     return [self imageWithIdentifier:identifier opaque:NO forSize:size andDrawingBlock:drawingBlock];
 }
 
++ (UIImage *)imageWithIdentifier:(NSString *)identifier{
+    return [[self drawingCache] objectForKey:identifier];
+}
+
 @end

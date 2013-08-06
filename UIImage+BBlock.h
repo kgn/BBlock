@@ -24,4 +24,7 @@ The `UIImage` is cached in an `NSCache` with the identifier provided. */
 + (UIImage *)imageWithIdentifier:(NSString *)identifier forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
 + (UIImage *)imageWithIdentifier:(NSString *)identifier opaque:(BOOL)opaque forSize:(CGSize)size andDrawingBlock:(void(^)())drawingBlock;
 
+/** Return the cached image for the identifier, or nil if there is no cached image. */
++ (UIImage *)imageWithIdentifier:(NSString *)identifier;
+
 @end
