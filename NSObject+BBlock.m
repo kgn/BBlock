@@ -33,6 +33,8 @@ static char BBKVOObjectKey;
 @implementation NSObject(BBlock)
 
 - (NSString *)addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(NSObjectBBlock)block{
+    NSAssert([keyPath length], @"Invalid keyPath");
+    
     BBKVOObject *kvoObject = [[BBKVOObject alloc] initWithBlock:block];
     [self addObserver:kvoObject forKeyPath:keyPath options:options context:nil];
     
