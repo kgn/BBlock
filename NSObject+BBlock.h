@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define BBlockNSObjectKeyName(k) NSStringFromSelector(@selector(k))
+
 @interface NSObject(BBlock)
 
 typedef void (^NSObjectBBlock)(NSString *keyPath, id object, NSDictionary *change);
