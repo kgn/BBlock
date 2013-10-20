@@ -9,7 +9,7 @@
 #ifndef _BBlock_Foundation_h
 #define _BBlock_Foundation_h
 
-#ifdef __MAC_OS
+#if defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
 #import "NSApplication+BBlock.h"
 #import "NSButton+BBlock.h"
 #import "NSImage+BBlock.h"
