@@ -27,4 +27,10 @@ The `UIImage` is cached in an `NSCache` with the identifier provided. */
 /** Return the cached image for the identifier, or nil if there is no cached image. */
 + (UIImage *)imageWithIdentifier:(NSString *)identifier;
 
+/** Remove the cached image for the identifier. */
++ (void)removeImageWithIdentifier:(NSString *)identifier;
+
+/** Remove all cached images. */
++ (void)removeAllImages;
+
 @end

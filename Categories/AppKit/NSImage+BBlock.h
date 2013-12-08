@@ -22,4 +22,13 @@ This method does not cache the image object. */
 The `NSImage` is cached in an `NSCache` with the identifier provided. */
 + (NSImage *)imageWithIdentifier:(NSString *)identifier forSize:(NSSize)size andDrawingBlock:(void(^)())drawingBlock;
 
+/** Return the cached image for the identifier, or nil if there is no cached image. */
++ (NSImage *)imageWithIdentifier:(NSString *)identifier;
+
+/** Remove the cached image for the identifier. */
++ (void)removeImageWithIdentifier:(NSString *)identifier;
+
+/** Remove all cached images. */
++ (void)removeAllImages;
+
 @end

@@ -53,4 +53,12 @@
     return [[self drawingCache] objectForKey:identifier];
 }
 
++ (void)removeImageWithIdentifier:(NSString *)identifier{
+    [[self drawingCache] removeObjectForKey:identifier];
+}
+
++ (void)removeAllImages{
+    [[self drawingCache] removeAllObjects];
+}
+
 @end
