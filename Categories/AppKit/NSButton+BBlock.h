@@ -1,16 +1,14 @@
 //
-//  BBNSButton.h
+//  NSButton+BBlock.h
 //  BBlock
 //
 //  Created by David Keegan on 4/10/12.
 //  Copyright (c) 2012 David Keegan. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@interface NSButton(BBlock)
 
-@interface BBNSButton : NSButton
-
-typedef void (^BBNSButtonCallback)();
+typedef void (^BBNSButtonCallback)(NSButton *button);
 
 /// Set the callback block to be called when the mouse **enters** the button.
 - (void)setInCallback:(BBNSButtonCallback)block;

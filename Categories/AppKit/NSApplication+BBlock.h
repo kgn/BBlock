@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSApplication (BBlock)
+@interface NSApplication(BBlock)
 
 - (void)beginSheet:(NSWindow*)sheet 
     modalForWindow:(NSWindow*)modalWindow 
