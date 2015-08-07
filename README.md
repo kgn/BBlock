@@ -186,6 +186,16 @@ This method starts the access, runs the block, then stops the access.
 -(void)accessSecurityScopedResourceWithBlock:(void (^)())block;
 ```
 
+##NSAlert+BBlock.h
+
+###@interface NSAlert(BBlock)
+
+Run NSAlert as sheet for window with completion handler block.
+
+```obj-c
+-(void)beginSheetModalForWindow:(NSWindow *)window completionHandler:(void (^)(NSInteger returnCode))handler contextInfo:(void *)contextInfo;
+```
+
 ##SKProductsRequest+BBlock.h
 
 ###@interface SKProductsRequest(BBlock)
