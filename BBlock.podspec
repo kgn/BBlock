@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'BBlock'
-  s.version      = '1.2.0'
+  s.version      = '1.2.1'
   s.license      = 'MIT'
   s.summary      = 'Objective-c block categories and subclasses.'
   s.homepage     = 'https://github.com/kgn/BBlock'
